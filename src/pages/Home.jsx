@@ -1,17 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../components";
 import backgroundImage from "../assets/img/home.jpg";
 import MovieLogo from "../assets/img/homeTitle.webp";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies, getGenres } from "../store";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const genresLoaded = useSelector((state) => state.nutflux.genresLoaded);
+  const movies = useSelector((state) => state.nutflux.movies);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGenres());
+  }, []);
+
+  useEffect(() => {
+    if (genresLoaded) dispatch(fetchMovies({ type: "all" }));
+  }, [genresLoaded]);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
+  console.log(movies);
   return (
     <div className="animate-fadeIn">
       <Navbar isScrolled={isScrolled} />
