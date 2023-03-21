@@ -39,7 +39,7 @@ export default function Register() {
     <div className="bg-[url('login.jpg')]">
       <div className="bg-black/60">
         <Header />
-        <div className="flex flex-col justify-center items-center text-center gap-4 md:gap-8 mt-12 mx-6 md:mt-24">
+        <div className="flex flex-col justify-center items-center text-center gap-4 md:gap-8 mt-12 mx-6 md:mt-24 animate-fadeIn">
           <h2 className="text-3xl lg:text-5xl font-bold">
             Unlimited movies, TV shows, and more.
           </h2>

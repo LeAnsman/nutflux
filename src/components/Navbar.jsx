@@ -23,7 +23,7 @@ export default function Navbar({ isScrolled }) {
 
   return (
     <nav
-      className={` flex justify-between items-center sticky top-0 z-40 transition duration-300  pt-6 px-6 md:px-12 ${
+      className={` flex justify-between items-center fixed top-0 z-40 transition duration-300  py-6 px-6 md:px-12 w-full ${
         isScrolled ? "bg-black" : ""
       }`}
     >

@@ -29,7 +29,7 @@ export default function Login() {
     <div className="h-screen md:bg-[url('login.jpg')]">
       <div className="bg-black/50 h-screen -z-10">
         <Header />
-        <div className="flex justify-center items-center h-[500px] bg-black/75 mx-auto w-full md:w-4/6 lg:w-1/2 xl:w-1/3 mt-12 md:mt-32">
+        <div className="flex justify-center items-center h-[500px] bg-black/75 mx-auto w-full md:w-4/6 lg:w-1/2 xl:w-1/3 mt-12 md:mt-32 animate-fadeIn">
           <div className="w-5/6">
             <h2 className="text-3xl font-bold">Login</h2>
             <form
