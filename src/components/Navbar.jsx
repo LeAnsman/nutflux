@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { FaPowerOff, FaSearch } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { FaSearch, FaUser } from "react-icons/fa";
 import { firebaseAuth } from "../utils/firebase-config";
-import { onAuthStateChanged, signOut } from "firebase/auth";
 
 export default function Navbar({ isScrolled }) {
   const [showSearch, setShowSearch] = useState(false);
   const [inputHover, setInputHover] = useState(false);
+
+  const navigate = useNavigate();
 
   const links = [
     { name: "Home", link: "/" },
@@ -15,16 +16,12 @@ export default function Navbar({ isScrolled }) {
     { name: "My List", link: "/mylist" },
   ];
 
-  useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (authUser) => {
-      if (!authUser) window.location.reload(false);
-    });
-  }, []);
+
 
   return (
     <nav
       className={` flex justify-between items-center fixed top-0 z-40 transition duration-500  py-6 px-6 lg:px-12 w-full ${
-        isScrolled ? "bg-black" : ""
+        isScrolled ? "bg-black/90" : ""
       }`}
     >
       <div className="flex items-center text-primary gap-24">
@@ -33,7 +30,7 @@ export default function Navbar({ isScrolled }) {
             isScrolled ? "scale-90" : ""
           }`}
         >
-          NUTFLUX
+          <Link to={"/"}>NUTFLUX</Link>
         </h1>
         <ul
           className={`hidden md:flex gap-6 lg:gap-12 text-white transition duration-500 ${
@@ -87,8 +84,12 @@ export default function Navbar({ isScrolled }) {
             }}
           />
         </div>
-        <button onClick={() => signOut(firebaseAuth)}>
-          <FaPowerOff />
+        <button onClick={() => navigate("/profile")}>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+            alt="nutflux_profil_picture"
+            className="w-8 h-8 rounded-md"
+          />
         </button>
       </div>
     </nav>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Register } from "./pages";
+import { Home, Login, Profile, Register } from "./pages";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./features/userSlice";
@@ -23,21 +23,24 @@ export default function App() {
           })
         );
       } else {
-        dispatch(logout);
+        dispatch(logout());
       }
     });
     return unsubscribe;
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>
       {!user ? (
         <>
-          <Route path="/" element={<Login />} />
+          <Route path="/*" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </>
       ) : (
-        <Route path="/" element={<Home />} />
+        <>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/*" element={<Home />} />
+        </>
       )}
     </Routes>
   );
