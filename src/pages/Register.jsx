@@ -36,7 +36,7 @@ export default function Register() {
   });
 
   return (
-    <div className="bg-[url('login.jpg')]">
+    <div className="bg-[url('https://genotipia.com/wp-content/uploads/2020/04/Netflix-Background-prueba-1.jpg')]">
       <div className="bg-black/60">
         <Header />
         <div className="flex flex-col justify-center items-center text-center gap-4 md:gap-8 mt-12 mx-6 md:mt-24 animate-fadeIn">

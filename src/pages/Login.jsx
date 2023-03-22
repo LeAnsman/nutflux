@@ -26,7 +26,7 @@ export default function Login() {
     if (currentUser) navigate("/");
   });
   return (
-    <div className="h-screen md:bg-[url('login.jpg')]">
+    <div className="h-screen md:bg-[url('https://genotipia.com/wp-content/uploads/2020/04/Netflix-Background-prueba-1.jpg')]">
       <div className="bg-black/50 h-screen -z-10">
         <Header />
         <div className="flex justify-center items-center h-[500px] bg-black/75 mx-auto w-full md:w-4/6 lg:w-1/2 xl:w-1/3 mt-12 md:mt-32 animate-fadeIn">
