@@ -34,3 +34,7 @@ input {
   padding: 4px 4px;
   border-radius: 6px;
 }
+
+.row_posters::-webkit-scrollbar {
+  display: none;
+}
