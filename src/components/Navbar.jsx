@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { FaPowerOff, FaSearch } from "react-icons/fa";
 import { firebaseAuth } from "../utils/firebase-config";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 export default function Navbar({ isScrolled }) {
   const [showSearch, setShowSearch] = useState(false);
@@ -14,6 +14,12 @@ export default function Navbar({ isScrolled }) {
     { name: "Movies", link: "/movies" },
     { name: "My List", link: "/mylist" },
   ];
+
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (authUser) => {
+      if (!authUser) window.location.reload(false);
+    });
+  }, []);
 
   return (
     <nav
