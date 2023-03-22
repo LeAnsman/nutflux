@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../utils/firebase-config";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Footer, Header } from "../components";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
@@ -11,23 +11,14 @@ export default function Login() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
-      navigate("/");
     } catch (err) {
       alert(err.message);
     }
   };
-
-  useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (authUser) => {
-      if (authUser) navigate("/");
-    });
-  }, []);
 
   return (
     <div className="h-screen md:bg-[url('https://genotipia.com/wp-content/uploads/2020/04/Netflix-Background-prueba-1.jpg')]">

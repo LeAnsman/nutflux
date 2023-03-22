@@ -16,11 +16,6 @@ export default function Home() {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
-  useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (authUser) => {
-      if (!authUser) navigate("/login");
-    });
-  }, []);
 
   return (
     <>

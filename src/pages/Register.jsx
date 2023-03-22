@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { Footer, Header } from "../components";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -30,12 +27,6 @@ export default function Register() {
       alert("Password must match");
     }
   };
-
-  useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (authUser) => {
-      if (authUser) navigate("/");
-    });
-  }, []);
 
   return (
     <div className="bg-[url('https://genotipia.com/wp-content/uploads/2020/04/Netflix-Background-prueba-1.jpg')]">
@@ -118,7 +109,7 @@ export default function Register() {
           </div>
           <p className="text-gray-500 mb-12 md:mb-24">
             Alreay have an account?{" "}
-            <Link to={"/login"} className="text-white hover:underline ml-2">
+            <Link to={"/"} className="text-white hover:underline ml-2">
               Login
             </Link>
           </p>
