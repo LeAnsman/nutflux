@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Profile, Register } from "./pages";
+import { Home, List, Login, Movies, Profile, Register, TV } from "./pages";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./features/userSlice";
@@ -39,6 +39,9 @@ export default function App() {
       ) : (
         <>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/tv" element={<TV />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/list" element={<List />} />
           <Route path="/*" element={<Home />} />
         </>
       )}
