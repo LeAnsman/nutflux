@@ -23,17 +23,22 @@ export default function Navbar({ isScrolled }) {
 
   return (
     <nav
-      className={` flex justify-between items-center fixed top-0 z-40 transition duration-300  py-6 px-6 md:px-12 w-full ${
+      className={` flex justify-between items-center fixed top-0 z-40 transition duration-300  py-6 px-6 lg:px-12 w-full ${
         isScrolled ? "bg-black" : ""
       }`}
     >
-      <div className="flex items-center text-[#40ac6d] gap-12">
+      <div className="flex items-center text-primary gap-12">
         <h1 className="text-6xl font-primary font-bold">NUTFLUX</h1>
-        <ul className="flex gap-12 text-white">
+        <ul className="hidden md:flex gap-6 lg:gap-12 text-white">
           {links.map(({ name, link }) => {
             return (
               <li key={name}>
-                <Link to={link}>{name}</Link>
+                <Link
+                  to={link}
+                  className="transition duration-300 font-[500] lg:text-xl hover:text-primary"
+                >
+                  {name}
+                </Link>
               </li>
             );
           })}
