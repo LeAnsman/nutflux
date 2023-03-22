@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Navbar, Banner } from "../components";
+import { Navbar, Banner, Row } from "../components";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import requests from "../utils/Requests";
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -17,6 +18,17 @@ export default function Home() {
       </header>
       <main className="animate-fadeIn">
         <Banner />
+        <Row title={"Trending Now"} fetchUrl={requests.fetchTrending} />
+        <Row title={"Top Rated"} fetchUrl={requests.fetchTopRated} />
+        <Row
+          title={"Netflix Originals"}
+          fetchUrl={requests.fetchNetflixOriginals}
+        />
+        <Row title={"Action Movies"} fetchUrl={requests.fetchActionMovies} />
+        <Row title={"Comedy Movies"} fetchUrl={requests.fetchComedyMovies} />
+        <Row title={"Horror Movies"} fetchUrl={requests.fetchHorrorMovies} />
+        <Row title={"Romance Movies"} fetchUrl={requests.fetchRomanceMovies} />
+        <Row title={"Documentaries"} fetchUrl={requests.fetchDocumentaries} />
       </main>
     </>
   );
