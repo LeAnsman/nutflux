@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
@@ -23,17 +23,19 @@ export default function Register() {
     if (password === passwordConfirm) {
       try {
         await createUserWithEmailAndPassword(firebaseAuth, email, password);
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        alert(err.message);
       }
     } else {
-      console.log("Password must match");
+      alert("Password must match");
     }
   };
 
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) navigate("/");
-  });
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (authUser) => {
+      if (authUser) navigate("/");
+    });
+  }, []);
 
   return (
     <div className="bg-[url('https://genotipia.com/wp-content/uploads/2020/04/Netflix-Background-prueba-1.jpg')]">
@@ -51,14 +53,6 @@ export default function Register() {
             membership.
           </h4>
           <div className="flex flex-col md:flex-row gap-4">
-            {/* <input
-              type="email"
-              className="bg-black/50 border border-white/50 text-white px-4 py-2"
-              placeholder="Email Address"
-            />
-            <button className="bg-[#40ac6d] text-black px-4 py-2 rounded-md w-fit mx-auto ">
-              Get Started
-            </button> */}
             <form
               action=""
               className="flex flex-col my-4 relative w-full lg:w-[450px]"
