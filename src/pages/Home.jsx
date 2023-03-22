@@ -1,15 +1,26 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { firebaseAuth } from "../utils/firebase-config";
+import { onAuthStateChanged } from "firebase/auth";
+import requests from "../utils/Requests";
 import { Navbar, Banner, Row } from "../components";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import requests from "../utils/Requests";
+
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const navigate = useNavigate();
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (authUser) => {
+      if (!authUser) navigate("/login");
+    });
+  }, []);
 
   return (
     <>
