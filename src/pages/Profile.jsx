@@ -10,7 +10,12 @@ export default function Profile() {
       <Navbar />
       <div className="animate-fadeIn flex flex-col items-center pt-36">
         <h2>Edit Profil</h2>
-        <button onClick={() => signOut(firebaseAuth)}>Logout</button>
+        <button
+          onClick={() => signOut(firebaseAuth)}
+          className="mt-12 px-4 py-2 bg-primary rounded-sm"
+        >
+          Logout
+        </button>
       </div>
     </>
   );
