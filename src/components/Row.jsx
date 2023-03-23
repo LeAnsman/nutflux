@@ -36,7 +36,11 @@ export default function Row({ title, fetchUrl }) {
           >
             <img
               className="max-h-48 object-contain w-full"
-              src={`${base_url}${movie.backdrop_path}`}
+              src={
+                movie.backdrop_path
+                  ? `${base_url}${movie.backdrop_path}`
+                  : `${base_url}${movie.poster_path}`
+              }
               alt={movie.name || movie.title}
             />
             <Link className="absolute bottom-2 left-2 font-[600] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
