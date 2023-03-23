@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Navbar } from "../components";
 import requests from "../utils/Requests";
 
@@ -35,9 +36,21 @@ export default function TV() {
           </option>
           <option value={requests.fetchPopularTV}>Popular</option>
         </select>
-        <div>
+        <div className="mx-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8 2xl:grid-cols-5">
           {movies?.map((movie) => (
-            <div key={movie.id}>movie</div>
+            <div key={movie.id} className="relative">
+              <img
+                src={
+                  movie.backdrop_path
+                    ? `${base_url}${movie.backdrop_path}`
+                    : `${base_url}${movie.poster_path}`
+                }
+                alt=""
+              />
+              <Link className="absolute bottom-2 left-2 font-[600] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                {movie.name || movie.title}
+              </Link>
+            </div>
           ))}
         </div>
       </main>
