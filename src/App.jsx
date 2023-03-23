@@ -6,6 +6,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./features/userSlice";
 import { firebaseAuth } from "./utils/firebase-config";
+import Details from "./pages/Details";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3/";
 
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/tv" element={<TV />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/list" element={<List />} />
+          <Route path="/details/:id" element={<Details />} />
           <Route path="/*" element={<Home />} />
         </>
       )}
