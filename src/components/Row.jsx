@@ -1,9 +1,13 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDraggable } from "react-use-draggable-scroll";
 
 export default function Row({ title, fetchUrl }) {
   const [movies, setMovies] = useState([]);
+
+  const scrollRef = useRef();
+  const { events } = useDraggable(scrollRef);
 
   const base_url = "https://image.tmdb.org/t/p/original";
 
@@ -20,7 +24,11 @@ export default function Row({ title, fetchUrl }) {
   return (
     <div className="ml-5">
       <h3 className="font-[500] text-2xl">{title}</h3>
-      <div className="row_posters flex overflow-y-hidden overflow-x-scroll p-5">
+      <div
+        ref={scrollRef}
+        {...events}
+        className="row_posters flex overflow-y-hidden overflow-x-scroll p-5"
+      >
         {movies.map((movie) => (
           <div
             key={movie.id}
@@ -31,7 +39,7 @@ export default function Row({ title, fetchUrl }) {
               src={`${base_url}${movie.backdrop_path}`}
               alt={movie.name || movie.title}
             />
-            <Link className="absolute bottom-2 left-2 font-[600]">
+            <Link className="absolute bottom-2 left-2 font-[600] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
               {movie.name || movie.title}
             </Link>
           </div>
