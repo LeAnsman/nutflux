@@ -1,13 +1,18 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useDraggable } from "react-use-draggable-scroll";
+import { addLike } from "../features/likeSlice";
 
 export default function Row({ title, fetchUrl }) {
   const [movies, setMovies] = useState([]);
+  const [movieId, setMovieId] = useState();
 
   const scrollRef = useRef();
   const { events } = useDraggable(scrollRef);
+
+  const dispatch = useDispatch();
 
   const base_url = "https://image.tmdb.org/t/p/original";
 
@@ -17,9 +22,13 @@ export default function Row({ title, fetchUrl }) {
       setMovies(res.data.results);
       return res;
     };
-
     fetchData();
   }, [fetchUrl]);
+
+  const handleClick = (movie) => {
+    // e.preventDefault();
+    dispatch(addLike(movie.id));
+  };
 
   return (
     <div className="ml-5">
@@ -46,6 +55,13 @@ export default function Row({ title, fetchUrl }) {
             <Link className="absolute bottom-2 left-2 font-[600] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
               {movie.name || movie.title}
             </Link>
+            <button
+              type="button"
+              className="absolute top-2 right-2"
+              onClick={() => handleClick(movie)}
+            >
+              Like
+            </button>
           </div>
         ))}
       </div>
