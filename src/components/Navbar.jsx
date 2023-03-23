@@ -3,9 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaSearch, FaUser } from "react-icons/fa";
 import { firebaseAuth } from "../utils/firebase-config";
 
-export default function Navbar({ isScrolled }) {
+export default function Navbar() {
   const [showSearch, setShowSearch] = useState(false);
   const [inputHover, setInputHover] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
+    return () => (window.onscroll = null);
+  };
 
   const navigate = useNavigate();
 
@@ -15,8 +21,6 @@ export default function Navbar({ isScrolled }) {
     { name: "Movies", link: "/movies" },
     { name: "My List", link: "/mylist" },
   ];
-
-
 
   return (
     <nav
