@@ -17,14 +17,14 @@ export default function Navbar() {
 
   const links = [
     { name: "Home", link: "/" },
-    { name: "TV Shows", link: "/tv" },
     { name: "Movies", link: "/movies" },
+    { name: "TV Shows", link: "/tv" },
     { name: "My List", link: "/mylist" },
   ];
 
   return (
     <nav
-      className={` flex justify-between items-center fixed top-0 z-40 transition duration-500  py-6 px-6 lg:px-12 w-full ${
+      className={` flex justify-between items-center fixed top-0 z-40 transition py-6 px-6 lg:px-12 w-full ${
         isScrolled ? "bg-black/90" : ""
       }`}
     >
