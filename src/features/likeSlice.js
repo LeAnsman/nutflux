@@ -7,7 +7,6 @@ export const likeSlice = createSlice({
   initialState,
   reducers: {
     addLike: (state, action) => {
-
       const movieId = action.payload;
 
       const existItem = state.find((id) => id === movieId);
@@ -29,6 +28,6 @@ export const likeSlice = createSlice({
 
 export const { addLike, removeLike } = likeSlice.actions;
 
-export const selectLike = (state) => state.like.like;
+export const selectLike = (state) => state.like;
 
 export default likeSlice.reducer;
