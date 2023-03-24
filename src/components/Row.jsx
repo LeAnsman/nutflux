@@ -7,11 +7,9 @@ import RowCard from "./RowCard";
 export default function Row({ title, fetchUrl }) {
   const [movies, setMovies] = useState([]);
 
-  // drag to scroll
   const scrollRef = useRef();
   const { events } = useDraggable(scrollRef);
 
-  // fetch data
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(fetchUrl);
@@ -30,7 +28,7 @@ export default function Row({ title, fetchUrl }) {
         className="row_posters flex overflow-y-hidden overflow-x-scroll p-5"
       >
         {movies.map((movie) => (
-          <RowCard movie={movie} key={movie.id} />
+          <RowCard movie={movie} />
         ))}
       </div>
     </div>
